@@ -1,0 +1,14 @@
+<DOCTYPE html>
+<html>
+	<head><title>BLOG</title></head>
+	
+	<body>
+	 <h1>CS 253 Blog</h1>
+	<div class="title">{{blogpost.title}}
+		<span class="rightDateStamp">{{blogpost.created}}</span>
+	</div>
+	<hr>
+	{{blogpost.render() | safe}}
+	<div>{{timestamp}}</div>
+    </body>
+</html>

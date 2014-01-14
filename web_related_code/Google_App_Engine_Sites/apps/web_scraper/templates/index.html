@@ -1,0 +1,221 @@
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="/static/normalize.css"></link>
+		<link rel="stylesheet" type="text/css" href="/static/styles.css"></link>
+		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+		<script src="/static/javascript.js"></script>
+	<style>
+	
+	body{
+		width: 100%;
+		height: 3000px;
+		font-family: verdana, arial, sans-serif;
+		
+	}
+	
+	.header{
+		position: fixed;
+		left: 8.33%%;
+		top: 0;
+		height: 200px;
+	}
+	
+	.header-top{
+		background: url(https://d2wvvaown1ul17.cloudfront.net/site-static/pages/home/account/debut_blue.png);
+		height: 30%;
+	}
+	
+	.header-info{
+		padding-top: 4px;
+		padding-left: 5%;
+		background: white;
+		height: 64px;
+	}
+	
+	.h1{
+		height: 90%;
+		width: auto;
+		padding-top: 6px;
+		font-size: 30px;
+		float: left;
+	}
+	
+	.headerimg{
+		margin-top: 10px;
+		margin-left: 20px;
+		height: 65px;
+		width: 30%;
+		float: left;
+	}
+	
+	.headline{
+		width: 90%;
+		height: 18px;
+		float: left;
+		left: 8.33%;
+		
+		color: orange;
+		font-size: 11px;
+		background-color: red;
+		
+		padding-left: 10%;
+		padding-top: 2px;
+		margin-top: -11px;
+	}
+	
+	.sections{
+		height: 52px;
+		width: 100%;
+		left: 8.33%;
+		float: left;
+		
+		background-color: purple;
+		
+	}
+	
+	.section_button{
+		height: 42px;
+		background-color: #FFDDBB;
+		float: left;
+		padding-top: 10px;
+		text-align: center;
+		font-size: 20px;
+		font-family: verdana, arial, sans-serif;
+	}
+	
+	.search_bar{
+		height: 42px;
+		background-color: #FFDDBB;
+		float: left;
+		padding-top: 10px;
+		font-size: 20px;
+		font-family: verdana, arial, sans-serif;
+		
+	}
+	
+	input[placeholder]{
+		font-size: 10px;
+		padding: 5px 5px 5px 5px;
+	}
+	
+	
+	.content{
+		margin-top: 200px;
+		background-color: green;
+		height: 2800px;
+		left: 8.33%;
+		float: left;
+	}
+	
+	.article{
+		border-top: 1px solid black;
+		height: 100px;
+		background-color: #ADDAFD;
+	}
+	
+	.footer{
+		position: fixed;
+		bottom: 0;
+		left: 8.33%%;
+		
+		padding-top: 5px;
+		border-top: 2px solid;
+		border-color: orange;
+
+		font-family: verdana, arial, sans-serif;	
+		background-color: #BDC4EB;
+		line-height: 25px;
+	}
+	.gutter-left{
+		height: 100%;
+		background: url(http://s.cdpn.io/3/dark_wall_@2X.png);
+		float: left;
+	}
+	
+	.gutter-right{
+		height: 100%;
+		background: url(http://s.cdpn.io/3/dark_wall_@2X.png);
+		float: right;
+	}
+	
+	.footer_block{
+		padding-left: 20px;
+		padding-bottom: 10px;
+		float: left;
+		margin: auto;
+	}
+	
+	a{
+		text-decoration: none;
+		font-weight: bold;
+		font-family: arial;
+	}
+	
+	
+	</style>
+	</head>
+	
+	<body>
+		<div class="col-1-12 gutter-left">
+		</div>
+		<div class="col-10-12 header">
+			<div class="header-top"></div>
+			
+			<div class="header-info">
+				<div class="h1">Lucas's Web Scraping Site!</div>
+				<div class="headerimg"><img src="http://adbnews.com/images/logonew.png" height="80%" width="250"></img></div>
+			</div>
+			
+			<div class="headline">Miley Cyrus does something wild again!</div>
+			
+			<div class="sections">
+				<div class="col-1-8 section_button"><a href="#business">Business</a></div>
+				<div class="col-1-8 section_button"><a href="#sports">Sports</a></div>
+				<div class="col-1-8 section_button"><a href="#science">Science</a></div>
+				<div class="col-1-8 section_button"><a href="#health">Health</a></div>
+				<div class="col-1-8 section_button"><a href="#politics">Politics</a></div>
+				<div class="col-3-8 search_bar">
+				<form>
+					Search:<input type="text" size="40" placeholder="Search for an article by keywords"></input>
+				</form>
+				</div>
+			</div>
+
+		</div>
+		
+		<div class="col-10-12 content">
+		
+			{% for article in articles%}
+			<div class="article">
+				<img src="{{article[3]}}" height= "50px" width="50px"></img>
+				<a href="{{article[1]}}">{{article[2]}}</a>
+			</div>
+
+			{% endfor %}
+		
+		</div>
+		
+		<div class="col-10-12 footer">
+			<div class="footer_block">
+				<div>About</div>
+				<div>Contact Me</div>
+			</div>
+			
+			<div class="footer_block">
+				<img src="/static/lucas_prof.jpg" style="height: 75px; width: 50px;"></img>
+			</div>
+			
+			<div class="footer_block">			
+				<div><a href="/about/blog">Blog</a></div>
+				<div>Just kidding, I don't have a blog.</div>
+			</div>
+
+			<div class="footer_block">
+				<div><a href="/about/tos">Terms of Use</a></div>
+				<div><a href="/about/privacy-policy">Privacy Policy</a></div>
+				<div>&copy; 2013 Lucas News Scraping </div>
+			</div>
+		</div>
+		<div class="col-1-12 gutter-right"></div>
+	</body>
+</html>

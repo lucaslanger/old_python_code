@@ -1,0 +1,19 @@
+<DOCTYPE html>
+<html>
+	<head><title>BLOG</title></head>
+	
+	<body>
+	 <h1>CS 253 Blog</h1>
+	{% for b in blogposts %} 
+	<div class="title">{{b.title}}
+		<span class="rightDateStamp">{{b.created}}</span>
+	</div>
+	<hr>
+	<div>{{b.blogpost}}</div>
+	<br>
+	<br>
+	
+	{% endfor %}
+	<div class="Last Query">{{timestamp}}</div>
+    </body>
+</html>

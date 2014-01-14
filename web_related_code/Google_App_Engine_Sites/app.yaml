@@ -1,0 +1,44 @@
+application: gleaming-store-401
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: true
+
+handlers:
+
+
+
+- url: /static/bootstrap/css
+  static_dir: static/bootstrap/css
+  
+- url: /static/bootstrap/js
+  static_dir: static/bootstrap/js
+  
+- url: /static
+  static_dir: static
+  application_readable: true
+  
+- url: /
+  script: apps.web_scraper.web_scraper.app
+  
+- url: /rot13
+  script: apps.rot13.rot13.app
+  
+- url: /ascii
+  script: apps.ascii.ascii.app
+  
+- url: /cookiestest
+  script: apps.cookiestest.cookiestest.app
+  
+- url: /blog.*
+  script: apps.blog.blog.app
+  
+- url: /wiki.*
+  script: apps.wiki.wiki.app
+ 
+libraries:
+- name: jinja2
+  version: latest
+  
+- name: markupsafe
+  version: latest

@@ -1,0 +1,242 @@
+<html>
+	<head>
+		<title>Welcome to Lucas's Wiki</title>
+		
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="Wiki for Lucas Langer's Favorite Subjects">
+		<meta name="author" content="Lucas Langer">
+		
+		<link type="text/css" rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css" />
+		<link type="text/css" rel="stylesheet" href="/static/bootstrap/css/bootstrap-theme.min.css">
+		<link type="text/css" rel="stylesheet" href="/static/khanfrontpage.css">
+		
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+		
+		
+		
+		<style type="text/css">
+		body {
+			padding-top: 50px;
+			}
+		.starter-template {
+			padding: 20px 15px;
+			text-align: center;
+		}
+		.formLwidth{
+			width:200px;
+		}
+		</style>
+	</head>
+	
+	<body>
+		<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		  <div class="container">
+			<div class="navbar-header">
+			  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			  </button> 
+			  <li class="navbar-brand">Lucas Langer's Wiki</li>
+			</div>
+			<div class="collapse navbar-collapse">
+			  <ul class="nav navbar-nav">
+				<li class="active"><a href="#">Home</a></li>
+				{% if username %}
+					<li><a href="/wiki/signout">{{username}}(logout)</a></li>
+					<li><a href="#edit">Edit</a></li>
+				{% else %}
+					<li><a href="/wiki/signup">Signup</a></li>
+					<li><a href="/wiki/signin">Signin</a></li>
+				{% endif %}
+				<li><a href="#history">History</a></li>
+			  </ul>
+			</div><!--/.nav-collapse -->
+		  </div>
+		</div>
+
+		<div class="container">
+		
+		{% if signup==True %}
+		
+			<div class="starter-template">
+				<h2>Signup</h2>
+				<form method="post">
+					<div>Username</div>
+					<input class="formLwidth" type="text" name="username" placeholder="Username"></input>
+					<div>{{usrnerror}}</div>
+					<br>
+					
+					<div>Password</div>
+					<input class="formLwidth" type="password" name="password" placeholder="Password"></input>
+					<div>{{pwerror}}</div>
+					<br>
+						
+					<div>Verify Password</div>
+					<input class="formLwidth" type="password" name="verify" placeholder="Please Re-Enter Desired Password"></input>
+					<div>{{verror}}</div>
+					<br>
+
+					<div>Email (optional)</div>
+					<input class="formLwidth" type="text" name="email" placeholder="Enter Your Email Address">
+					<div>{{emailerror}}</div>
+					<br>
+
+				  <input type="submit">
+				</form>
+			  </div>
+			  
+		{% elif signin==True %}
+		
+			<div class="starter-template">
+				<h2>Login</h2>
+				<form method="post">
+					<div>Username</div>
+					<input class="formLwidth" type="text" name="username" placeholder="Username">
+					<br>
+					<div>Password</div>
+					<input class="formLwidth" type="password" name="password" placeholder="Password">
+					<br>
+				  <div class="error">
+					{{login_error}}
+				  </div>
+
+				  <input type="submit">
+				</form>
+			</div>
+			
+		{% elif edit==True %}
+			<div class="starter-template">
+				<form method="post">
+					<textarea name="content" style="height: 250px; width: 250px">{{content}}</textarea>
+					<br>
+					<input type="submit" value="Save"></input>
+				</form>
+			</div>
+		
+		{% elif hist==True %}
+			<div class="starter-template">
+			<div style="margin: 0px 0; border-top: 2px solid #ada95b; width: 100%;"></div>
+			{% for h in history %}
+				<div><span>{{h[0]}}<span><p>{{h[1]}}</p></div>
+				<div><a style="padding:0px 25px 25px;" href="#edit">Edit</a><a href="#view">View</a></div>
+				<div style="margin: 0px 0; border-top: 2px solid #ada95b; width: 100%;"></div>		
+			{% endfor %}
+			</div>
+		
+		{% else %}
+			<div class="starter-template">
+				<p class = "lead">{{content}}</p>
+			</div>
+		{% endif %}
+
+		</div><!-- /.container -->	
+	
+		<footer id="footer" style="position:fixed; bottom: 0;">
+			<div class="footer-container">
+				<div class="row-fluid main-links">
+					<div class="span2">
+						<ul>
+							<li class="heading">About</li>
+							<li><a href="/about">Our Mission</a></li>
+							<li><a href="/about/the-team">Our Team</a></li>
+							<li><a href="/about/our-interns">Our Interns</a></li>
+							<li><a href="/about/our-content-specialists">Our Content Specialists</a></li>
+							<li><a href="/about/med-competition">Our MCAT Content Creators</a></li>
+						</ul>
+					</div>
+					<div class="span2">
+						<ul>
+							<li class="heading">Help</li>
+							
+							<li><a href="/reportissue?type=Defect&issue_labels=" data-tag="Footer" id="report" class="show-demo-dialog">Report a Problem</a></li>
+							
+							<li><a href="http://khanacademy.desk.com/">FAQ</a></li>
+
+							<li class="heading spaced">Contact Us</li>
+							<li><a href="http://khanacademy.desk.com/">Contact</a></li>
+							<li><a href="http://khanacademy.desk.com/customer/portal/articles/441307-press-room">Press</a></li>
+						</ul>
+					</div>
+					<div class="span2">
+						<ul>
+							<li class="heading">Coaching</li>
+							
+							<li><a href="/coach/reports">Coach Reports</a></li>
+							<li><a href="/coach-res">Coach Resources</a></li>
+							<li><a href="/coach-res/case-studies">Case Studies</a></li>
+							<li><a href="/commoncore">Common Core</a></li>
+
+							
+						</ul>
+					</div>
+					<div class="span2">
+						<ul>
+							<li class="heading">Careers</li>
+							<li><a href="/careers">Full Time</a></li>
+							<li><a href="/careers/interns">Internships</a></li>
+
+							<li class="heading spaced">Contribute</li>
+							<li><a href="/donate">Donate</a></li>
+							<li><a href="/contribute">Volunteer</a></li>
+							<li><a href="/about/our-supporters">Our Supporters</a></li>
+							<li><a href="http://shop.khanacademy.org/">Shop KA</a></li>
+						</ul>
+					</div>
+					<div class="span3">
+						<ul>
+							<li class="heading nowrap">
+								International
+								<i class="icon-globe i18n-icon"></i>
+							</li>
+							
+								
+									<li><a href="/settings">Change language</a></li>
+								
+							
+							<li><a href="/contribute">Translate our content</a></li>
+
+							<li class="heading spaced">Social</li>
+							<li><a class="google-analytics-link-track facebook show-demo-dialog"
+									onclick="_gaq.push(['_trackEvent', 'Click', 'Facebook-Join-Header']);"
+									href="http://www.facebook.com/khanacademy" title="Facebook">Facebook</a></li>
+							<li><a class="google-analytics-link-track twitter show-demo-dialog"
+									onclick="_gaq.push(['_trackEvent', 'Click', 'Twitter-Follow-Header']);"
+									href="http://twitter.com/khanacademy" title="Twitter">Twitter</a></li>
+							<li><a href="/about/blog">Blog</a></li>
+							<li><a href="http://life.khanacademy.org/">Life at KA</a></li>
+						</ul>
+					</div>
+
+					<div class="span1">
+						<img class="handtree" src="https://www.kastatic.org/images/khan-logo-vertical-transparent.png">
+					</div>
+				</div>
+
+				<div class="extra-links clearfix">
+					<div class="legal">
+							<span><a href="/about/tos">Terms of Use</a></span>
+					</div>
+					<div class="legal">
+							<span><a href="/about/privacy-policy">Privacy Policy</a></span>
+					</div>
+					
+					<div class="copyright" title="Version: 1227-a02f1cf05afc.372639601774107241">
+						&copy; 2013
+						
+						
+						Khan Academy <br>
+						Except where noted, all rights reserved.
+					</div>
+
+				</div>
+
+			</div>
+		</footer>
+		<script src="/static/bootstrap/js/jquery.min.js"></script>
+		<script src="/static/bootstrap/js/bootstrap.min.js"></script>
+	</body>
+</html>
